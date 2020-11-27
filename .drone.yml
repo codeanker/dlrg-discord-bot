@@ -14,7 +14,7 @@ steps:
       from_secret: k8s-staging-drone-AWS_ACCESS_KEY_ID
     AWS_SECRET_ACCESS_KEY:
       from_secret: k8s-staging-drone-AWS_SECRET_ACCESS_KEY
-    chart_name: dlrg-discord-bot
+    chart_name: dlrg-praecura-bot
     chart_version: 1.0.0-${DRONE_COMMIT_SHA:0:7}
 ---
 kind: pipeline
