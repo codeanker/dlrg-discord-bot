@@ -3,7 +3,5 @@ global:
   env: "production"
   ingress:
     hosts: ["dlrg-discord-bot.localhost"]
- api:
+api:
   replicaCount: 1
-
-
