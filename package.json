@@ -1,6 +1,6 @@
 {
     "name": "dlrg-discord-bot",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Discord Bot für die DLRG-Jugend Schleswig-Holstein",
     "main": "index.js",
     "scripts": {
