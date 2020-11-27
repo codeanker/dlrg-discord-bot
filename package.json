@@ -1,7 +1,7 @@
 {
     "name": "dlrg-discord-bot",
     "version": "1.0.0",
-    "description": "",
+    "description": "Discord Bot für die DLRG-Jugend Schleswig-Holstein",
     "main": "index.js",
     "scripts": {
         "start": "docker-compose build && docker-compose up"
