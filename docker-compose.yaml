@@ -1,0 +1,7 @@
+version: "3"
+services:
+  api:
+    build: ./api
+    command: npm run serve
+    volumes:
+      - ./api/src:/app/src

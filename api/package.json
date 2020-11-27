@@ -1,0 +1,23 @@
+{
+  "name": "dlrg-discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src",
+  "scripts": {
+    "serve": "nodemon -L src/bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "directories": {
+    "lib": "src"
+  },
+  "keywords": [],
+  "author": "Daniel Swiatek",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "require-uncached": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
