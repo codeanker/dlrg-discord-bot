@@ -1,0 +1,44 @@
+---
+kind: pipeline
+type: kubernetes
+name: helm-chart
+trigger:
+  event:
+  - push
+
+steps:
+- name: helm-chart
+  image: codeanker/drone-helm:37a1832
+  settings:
+    AWS_ACCESS_KEY_ID:
+      from_secret: k8s-staging-drone-AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: k8s-staging-drone-AWS_SECRET_ACCESS_KEY
+    chart_name: praecura
+    chart_version: 1.0.0-${DRONE_COMMIT_SHA:0:7}
+---
+kind: pipeline
+type: kubernetes
+name: deploy-staging
+trigger:
+  branch:
+  - development
+  event:
+  - push
+steps:
+- name: trigger
+  image: plugins/downstream
+  settings:
+    server: https://drone.anker.dev
+    deploy: staging
+    last_successful: true
+    token:
+      from_secret: drone_token
+    params:
+      - CHART_VERSION=1.0.0-${DRONE_COMMIT_SHA:0:7}
+      - CHART_NAME=dlrg-discord-bot
+    repositories:
+      - codeanker/k8s-staging@master
+depends_on:
+- api
+- helm-chart

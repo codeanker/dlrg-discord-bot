@@ -1,0 +1,22 @@
+---
+kind: pipeline
+type: kubernetes
+name: api
+trigger:
+  event:
+  - push
+
+steps:
+- name: docker-image
+  image: codeanker/drone-makisu:c256416
+  resources:
+    requests:
+      cpu: 500
+  settings:
+    repo: codeanker/dlrg-discord-bot
+    context: /drone/src/api
+    tags: ${DRONE_COMMIT_SHA:0:7}
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password

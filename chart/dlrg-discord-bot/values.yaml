@@ -1,0 +1,9 @@
+global:
+  commit: "b3ba1f0"
+  env: "production"
+  ingress:
+    hosts: ["dlrg-discord-bot.localhost"]
+ api:
+  replicaCount: 1
+
+
