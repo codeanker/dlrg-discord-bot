@@ -13,7 +13,7 @@ steps:
     requests:
       cpu: 500
   settings:
-    repo: codeanker/dlrg-discord-bot
+    repo: codeanker/dlrg-discord-bot-api
     context: /drone/src/api
     tags: ${DRONE_COMMIT_SHA:0:7}
     username:
