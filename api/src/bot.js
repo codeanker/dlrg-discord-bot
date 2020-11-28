@@ -14,7 +14,6 @@ client.on('messageReactionAdd', async (reaction, user) => {
     settings = requireUncached('./settings.json');
     
     if (reaction.message.id.toString() == settings.channel_controller_message_id) {
-        reaction.users.remove(user.id);
         reaction.message.guild.channels.create(user.username, {
             type: "voice"
         }).then(async channel => {
@@ -22,7 +21,9 @@ client.on('messageReactionAdd', async (reaction, user) => {
             await channel.updateOverwrite(user.id, { MANAGE_CHANNELS: true });
             var deletionInterval = setInterval(function () {
                 deleteIfEmpty(channel, deletionInterval);
+                reaction.users.remove(user.id);
             }, 20000);
+            
         }).catch(err => {
             console.log(err)
         })
