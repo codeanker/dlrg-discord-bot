@@ -5,6 +5,7 @@
   "main": "src",
   "scripts": {
     "serve": "nodemon -L src/bot.js",
+    "start": "node src/bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "directories": {

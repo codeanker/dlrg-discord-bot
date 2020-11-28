@@ -12,4 +12,4 @@ RUN \
 COPY package*.json ./
 RUN npm ci
 COPY . .
-CMD ["npm", "run", "serve"]
+CMD ["npm", "start"]
