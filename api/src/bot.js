@@ -22,7 +22,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
             await channel.updateOverwrite(user.id, { MANAGE_CHANNELS: true });
             var deletionInterval = setInterval(function () {
                 deleteIfEmpty(channel, deletionInterval);
-            }, 5000);
+            }, 20000);
         }).catch(err => {
             console.log(err)
         })
