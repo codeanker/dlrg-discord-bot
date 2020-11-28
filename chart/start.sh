@@ -1,4 +1,4 @@
 #!/bin/sh
-kubectl delete namespace praecura
-kubectl create namespace praecura
+kubectl delete namespace dlrg
+kubectl create namespace dlrg
 helm install praecura ./praecura/ --namespace praecura --debug
