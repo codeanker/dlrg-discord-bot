@@ -7,12 +7,9 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('messageReactionAdd', async (reaction, user) => {
-    console.log(getEmojiName(reaction.emoji));
-    //console.log(user)
 
-    settings = requireUncached('./settings.json');
-    
+client.on('messageReactionAdd', async (reaction, user) => {
+    settings = requireUncached('./settings.json')
     if (reaction.message.id.toString() == settings.channel_controller_message_id) {
         reaction.message.guild.channels.create(user.username, {
             type: "voice"
@@ -23,11 +20,20 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 deleteIfEmpty(channel, deletionInterval);
                 reaction.users.remove(user.id);
             }, 20000);
+            console.log(channel)
+            console.log(user)
             
         }).catch(err => {
             console.log(err)
         })
     }
+})
+
+client.on('messageReactionRemove', async (recation, user) => {
+    settings = requireUncached('./settings.json')
+    console.log(client.channels)
+    console.log('user', user)
+    console.log('remove', recation)
 })
 
 function deleteIfEmpty(channel, interval) {
@@ -49,8 +55,14 @@ function getEmojiName(emoji) {
 client.login(auth.token);
 
 client.on('message', msg => {
-    if (msg.content === '!intro') {
-        msg.reply('Hallo!');
+    settings = requireUncached('./settings.json');
+    if (msg.content === '!addChannelCreateReaction') {
+        client.channels.fetch(settings.channel_controller_id)
+        .then((channel) => {
+            channel.send("Erstelle einen neuen Voice Channel.").then(message => {
+                message.react("✅")
+            })
+        }).catch(error => console.log("bot.js, client.on('message')", error))
+        msg.reply('Message erstellt');
     }
-    console.log(msg)
 });
