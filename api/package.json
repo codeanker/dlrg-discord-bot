@@ -4,7 +4,7 @@
   "description": "",
   "main": "src",
   "scripts": {
-    "serve": "nodemon -L src/bot.js",
+    "serve": "nodemon -L --inspect=0.0.0.0:9999",
     "start": "node src/bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,8 +15,21 @@
   "author": "Daniel Swiatek",
   "license": "ISC",
   "dependencies": {
+    "@codeanker/feathers-mongoose": "^6.1.4",
+    "@feathersjs/configuration": "^4.5.10",
+    "@feathersjs/express": "^4.5.10",
+    "@feathersjs/feathers": "^4.5.10",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
     "discord.js": "^12.5.1",
-    "require-uncached": "^2.0.0"
+    "esm": "^3.2.25",
+    "feathers-mongoose": "^8.3.1",
+    "helmet": "^4.2.0",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.11.1",
+    "require-uncached": "^2.0.0",
+    "serve-favicon": "^2.5.0",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"

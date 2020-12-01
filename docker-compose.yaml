@@ -3,5 +3,22 @@ services:
   api:
     build: ./api
     command: npm run serve
+    depends_on:
+      - mongodb
+    ports:
+      - 3030:3030
+      - 9999:9999
     volumes:
       - ./api/src:/app/src
+      - ./api/public:/app/public
+      - ./api/config:/app/config
+    environment:
+      - NODE_ENV=docker
+  mongodb:
+    image: mongo:3.6.7
+    ports:
+      - 27017:27017
+    volumes:
+        - mongodb-data:/data/db
+volumes:
+  mongodb-data:
