@@ -3,11 +3,10 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 const requireUncached = require('require-uncached');
-
 module.exports = async function(app) {
-    
+
     client.login(app.get('botToken'));
-    
+
     client.on('ready', () => {
         console.log(`Logged in as ${client.user.tag}!`);
     });
@@ -28,7 +27,7 @@ module.exports = async function(app) {
                 }, 20000);
                 console.log(channel)
                 console.log(user)
-                
+
             }).catch(err => {
                 console.log(err)
             })
@@ -40,14 +39,14 @@ module.exports = async function(app) {
         console.log('user', user)
         console.log('remove', recation)
     })
-    
+
     function deleteIfEmpty(channel, interval) {
         if (channel.members.size <= 0) {
             channel.delete();
             clearInterval(interval);
         }
     }
-    
+
     function getEmojiName(emoji) {
         var emoji_regex = /[\u1000-\uFFFF]+/g;
         if (emoji_regex.test(emoji.name)) {
