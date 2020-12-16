@@ -15,7 +15,16 @@ module.exports = async function(app) {
     let channel_controller_category_id = app.get('channel_controller_category_id')
 
     client.on('messageReactionAdd', async (reaction, user) => {
-        if (reaction.message.id.toString() == channel_controller_message_id) {
+        //console.log("channels:", client.channels.find(channel => channel.ownerId === user.id))
+        console.log("user: ", user.id)
+        //channels =  await client.channels.cache.find(channel => channel.id)
+
+        channels = await client.channels.cache.map(channel => Object.seal(channel))
+        console.log("channels:", channels)
+        //console.log("channelGuild", channels.guild.channels.find(channel => true))
+
+        //id === '784800868930158612'
+        /*if (reaction.message.id.toString() == channel_controller_message_id) {
             reaction.message.guild.channels.create(user.username, {
                 type: "voice"
             }).then(async channel => {
@@ -25,19 +34,20 @@ module.exports = async function(app) {
                     deleteIfEmpty(channel, deletionInterval);
                     reaction.users.remove(user.id);
                 }, 20000);
-                console.log(channel)
-                console.log(user)
+                // console.log("channel: ", channel)
+                // console.log("channelId: ", channel.id)
+
 
             }).catch(err => {
                 console.log(err)
             })
-        }
+        }*/
     })
 
     client.on('messageReactionRemove', async (recation, user) => {
-        console.log(client.channels)
-        console.log('user', user)
-        console.log('remove', recation)
+        //console.log(re.channels)
+        //console.log('user', user)
+        //console.log('remove', recation)
     })
 
     function deleteIfEmpty(channel, interval) {
